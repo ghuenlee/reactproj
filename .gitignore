@@ -1,0 +1,7 @@
+## Folders to ignore:
+/node_modules
+/playground
+/app/components/scrapped
+
+
+## Files to ignore:
