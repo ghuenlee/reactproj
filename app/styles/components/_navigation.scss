@@ -1,0 +1,19 @@
+.top-bar {
+    background-color: $grey;
+}
+
+.top-bar {
+    .menu-text {
+        color: white;
+    }
+    .menu {
+        background-color: $grey;
+    }
+    .menu>.menu-text>a {
+        display: inline;
+        padding: 0;
+    }
+    .active-link {
+        font-weight: bold;
+    }
+}

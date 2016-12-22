@@ -4,15 +4,17 @@
   "description": "React tutorial",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "author": "Myself",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.3",
     "express": "^4.14.0",
+    "mongoose": "^4.7.4",
     "node-sass": "^4.1.1",
     "react": "^15.4.1",
+    "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0",
     "sass-loader": "^4.1.0",
