@@ -1,7 +1,7 @@
 var React = require('react');
 var Clock = require('Clock');
 var CountdownForm = require('CountdownForm');
-
+var Controls = require('Controls');
 var Countdown = React.createClass({
     getInitialState: function () {
         return {
@@ -15,8 +15,23 @@ var Countdown = React.createClass({
                 case 'started':
                     this.startTimer();
                     break;
+                case 'stopped':
+                    this.setState({
+                        count: 0
+                    });
+                // Notice how we didn't put break; here ? this is so that the code written
+                // for paused gets executed for stopped as well!
+                case 'paused':
+                    clearInterval(this.timer);
+                    this.timer = undefined;
+                    break;
             }
         }
+    },
+    handleStatusChange: function(newStatus){
+      this.setstate({
+          countdownStatus: newStatus
+      })  
     },
     startTimer: function () {
         var that = this;
@@ -34,14 +49,21 @@ var Countdown = React.createClass({
         });
     },
     render: function () {
-        var {count} = this.state;
+        var {count, countdownStatus} = this.state;
+        var renderControls = () => {
+          if(countdownStatus !== 'stopped'){
+              return <Controls onStatusChange={this.handleStatusChange} countdownStatus={countdownStatus}/>
+          }  else {
+              return <CountdownForm onSetCountdown={this.setCountdown} />
+          }
+        };
         return (
             <div>
                 <h1 className="text-center">
                     Countdown
                 </h1>
                 <Clock totalSeconds={count} />
-                <CountdownForm onSetCountdown={this.setCountdown} />
+                {renderControls()}
             </div>
         );
     }
