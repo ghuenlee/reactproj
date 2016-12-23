@@ -28,18 +28,25 @@ var Countdown = React.createClass({
             }
         }
     },
-    handleStatusChange: function(newStatus){
-      this.setstate({
-          countdownStatus: newStatus
-      })  
+    handleStatusChange: function (newStatus) {
+        this.setState({
+            countdownStatus: newStatus
+        });
     },
     startTimer: function () {
         var that = this;
         this.timer = setInterval(function () {
-            var newCount = that.state.count - 1;
-            that.setState({
-                count: newCount >= 0 ? newCount : 0
-            });
+            if (that.state.count <= 0) {
+                that.setState({
+                    countdownStatus: 'stopped'
+                });
+                clearInterval(that.timer);
+            } else {
+                var newCount = that.state.count - 1;
+                that.setState({
+                    count: newCount >= 0 ? newCount : 0
+                });
+            }
         }, 1000);
     },
     setCountdown: function (seconds) {
@@ -51,11 +58,11 @@ var Countdown = React.createClass({
     render: function () {
         var {count, countdownStatus} = this.state;
         var renderControls = () => {
-          if(countdownStatus !== 'stopped'){
-              return <Controls onStatusChange={this.handleStatusChange} countdownStatus={countdownStatus}/>
-          }  else {
-              return <CountdownForm onSetCountdown={this.setCountdown} />
-          }
+            if (countdownStatus !== 'stopped') {
+                return <Controls onStatusChange={this.handleStatusChange} countdownStatus={countdownStatus} />;
+            } else {
+                return <CountdownForm onSetCountdown={this.setCountdown} />;
+            }
         };
         return (
             <div>
