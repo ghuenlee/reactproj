@@ -1,9 +1,9 @@
-# ReactBoilerplate 2
- A simple react boilerplate!
+# React Project 0.0.1
+ A simple react Timer/Countdown project!
  
 ### What is this ?
 
-This is an extremely simple react boilerplate, built with the following modules:
+This is an extremely simple react project, built with the following modules:
 
   - NodeJS
   - ExpressJS
